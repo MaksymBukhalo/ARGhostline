@@ -56,44 +56,65 @@ public class NPBinding : SingletonPattern <NPBinding>
 	private		static		UI 						userInterface;
 	private		static		Utility 				utility;
 
-//#if USES_WEBVIEW
-//	private 	static		WebViewNative 			webview;
-//#endif
+	//#if USES_WEBVIEW
+	//	private 	static		WebViewNative 			webview;
+	//#endif
 
 #if USES_SOOMLA_GROW
 	private		static		SoomlaGrowService		soomlaGrowService;	
 #endif
-	
+
 	#endregion
 
 	#region Static Properties
 
-#if USES_ADDRESS_BOOK
+#if USES_ADDRESS_BOOK && UNITY_EDITOR
 	/// <summary>
 	/// Returns platform specific interface to access Address Book feature.
 	/// </summary>
-	public static AddressBook AddressBook 	
-	{ 
+	public static AddressBook AddressBook
+	{
 		get
 		{
-			NPBinding	_sharedInstance	= NPBinding.Instance;
-			
+			NPBinding _sharedInstance = NPBinding.Instance;
+
 			if (_sharedInstance == null)
 				return null;
 
 			if (addressBook == null)
-				addressBook	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<AddressBook>();
-			
+				addressBook = _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<AddressBook>();
+
 			return addressBook;
 		}
 	}
 #endif
 
-#if !UNITY_EDITOR
+//#if !UNITY_EDITOR
+//	/// <summary>
+//	/// Returns platform specific interface to access Billing (IAP) feature.
+//	/// </summary>
+//	public static Billing Billing 			
+//	{ 
+//		get
+//		{
+//			NPBinding	_sharedInstance	= NPBinding.Instance;
+			
+//			if (_sharedInstance == null)
+//				return null;
+			
+//			if (billing == null)
+//				billing	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<Billing>();
+			
+//			return billing;
+//		}
+//	}
+//#endif
+
+#if USES_CLOUD_SERVICES
 	/// <summary>
 	/// Returns platform specific interface to access Billing (IAP) feature.
 	/// </summary>
-	public static Billing Billing 			
+	public static CloudServices CloudServices 			
 	{ 
 		get
 		{
@@ -102,76 +123,55 @@ public class NPBinding : SingletonPattern <NPBinding>
 			if (_sharedInstance == null)
 				return null;
 			
-			if (billing == null)
-				billing	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<Billing>();
+			if (cloudServices == null)
+				cloudServices	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<CloudServices>();
 			
-			return billing;
+			return cloudServices;
 		}
 	}
 #endif
 
-//#if USES_CLOUD_SERVICES
-//	/// <summary>
-//	/// Returns platform specific interface to access Billing (IAP) feature.
-//	/// </summary>
-//	public static CloudServices CloudServices 			
-//	{ 
-//		get
-//		{
-//			NPBinding	_sharedInstance	= NPBinding.Instance;
-			
-//			if (_sharedInstance == null)
-//				return null;
-			
-//			if (cloudServices == null)
-//				cloudServices	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<CloudServices>();
-			
-//			return cloudServices;
-//		}
-//	}
-//#endif
+	//#if USES_GAME_SERVICES
+	//	/// <summary>
+	//	/// Returns platform specific interface to access Game Services feature.
+	//	/// </summary>
+	//	public static GameServices GameServices 			
+	//	{ 
+	//		get
+	//		{
+	//			NPBinding	_sharedInstance	= NPBinding.Instance;
 
-//#if USES_GAME_SERVICES
-//	/// <summary>
-//	/// Returns platform specific interface to access Game Services feature.
-//	/// </summary>
-//	public static GameServices GameServices 			
-//	{ 
-//		get
-//		{
-//			NPBinding	_sharedInstance	= NPBinding.Instance;
-			
-//			if (_sharedInstance == null)
-//				return null;
-			
-//			if (gameServices == null)
-//				gameServices	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<GameServices>();
-			
-//			return gameServices;
-//		}
-//	}
-//#endif
+	//			if (_sharedInstance == null)
+	//				return null;
 
-//#if USES_MEDIA_LIBRARY
-//	/// <summary>
-//	/// Returns platform specific interface to access Media Library feature.
-//	/// </summary>
-//	public static MediaLibrary MediaLibrary 	
-//	{ 
-//		get
-//		{
-//			NPBinding	_sharedInstance	= NPBinding.Instance;
-			
-//			if (_sharedInstance == null)
-//				return null;
-			
-//			if (mediaLibrary == null)
-//				mediaLibrary	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<MediaLibrary>();
-			
-//			return mediaLibrary;
-//		}
-//	}
-//#endif
+	//			if (gameServices == null)
+	//				gameServices	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<GameServices>();
+
+	//			return gameServices;
+	//		}
+	//	}
+	//#endif
+
+	//#if USES_MEDIA_LIBRARY
+	//	/// <summary>
+	//	/// Returns platform specific interface to access Media Library feature.
+	//	/// </summary>
+	//	public static MediaLibrary MediaLibrary 	
+	//	{ 
+	//		get
+	//		{
+	//			NPBinding	_sharedInstance	= NPBinding.Instance;
+
+	//			if (_sharedInstance == null)
+	//				return null;
+
+	//			if (mediaLibrary == null)
+	//				mediaLibrary	= _sharedInstance.AddComponentBasedOnPlatformOnlyIfRequired<MediaLibrary>();
+
+	//			return mediaLibrary;
+	//		}
+	//	}
+	//#endif
 
 #if USES_NETWORK_CONNECTIVITY
 	/// <summary>
